@@ -10,10 +10,12 @@ function App() {
   return (
     <Box sx={{
       display: 'flex',
+      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
     }}>
+      <Box sx={{ fontWeight: "bold", fontSize: '40px', mb: '25px' }}>Investment Calculator</Box>
       <Box sx={{
         display: 'flex',
         height: '800px',
