@@ -6,24 +6,37 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 const EmptyState = () => <Box>Fill in some values to get started</Box>;
 
 const Visualization = ({ yearlyReturns }) => {
+  const finalYear = yearlyReturns[yearlyReturns.length - 1];
+  
   return (
-    <LineChart
-      width={800}
-      height={600}
-      data={yearlyReturns}
-      margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="year" />
-      <YAxis />
-      <Tooltip />
-      <Line type="monotone" dataKey="amount" stroke="#8884d8" activeDot={{ r: 8 }} />
-    </LineChart>
+      <Box sx={{ fontWeight: "bold", fontSize: '20px', mb: '20px' }}>
+        {`You will have $${finalYear.amount} by ${finalYear.year}`}
+      </Box>
+      <LineChart
+        width={800}
+        height={600}
+        data={yearlyReturns}
+        margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="year" />
+        <YAxis />
+        <Tooltip />
+        <Line type="monotone" dataKey="amount" stroke="#8884d8" activeDot={{ r: 8 }} />
+      </LineChart>
+    </Box>
   )
 }
 const Chart = ({ yearlyReturns }) => {
