@@ -9,8 +9,9 @@ const calculateReturnPerYear = (
 ) => {
   const monthlyRate = rateOfReturn / 100 / 12; // Convert annual rate to monthly
   const startYear = new Date().getFullYear();
-  const results = [{ year: startYear, amount: startingAmount }];
   let currentAmount = startingAmount;
+  let totalContributions = startingAmount;
+  const results = [{ year: startYear, amount: currentAmount, totalContributions }];
 
   for (let year = 1; year <= years; year++) {
       // Calculate monthly contributions for one year
@@ -19,7 +20,8 @@ const calculateReturnPerYear = (
       }
       
       currentAmount = parseFloat(currentAmount.toFixed(2));
-      results.push({ year: startYear + year, amount: currentAmount });
+      totalContributions += (monthlyContribution * 12);
+      results.push({ year: startYear + year, amount: currentAmount, totalContributions });
   }
 
   return results;

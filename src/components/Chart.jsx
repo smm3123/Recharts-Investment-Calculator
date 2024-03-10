@@ -1,7 +1,7 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
 import { Box } from '@mui/material';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 const EmptyState = () => <Box>Fill in some values to get started</Box>;
 
@@ -34,7 +34,8 @@ const Visualization = ({ yearlyReturns }) => {
         <XAxis dataKey="year" />
         <YAxis />
         <Tooltip />
-        <Line type="monotone" dataKey="amount" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="amount" stroke="#4841cc" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="totalContributions" stroke="#9c2624" activeDot={{ r: 8 }} />
       </LineChart>
     </Box>
   )
