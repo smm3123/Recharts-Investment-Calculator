@@ -21,6 +21,7 @@ const calculateReturnPerYear = (
       
       currentAmount = parseFloat(currentAmount.toFixed(2));
       totalContributions += (monthlyContribution * 12);
+      
       results.push({ year: startYear + year, amount: currentAmount, totalContributions });
   }
 
