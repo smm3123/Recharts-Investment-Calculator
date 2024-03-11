@@ -3,6 +3,20 @@ import { isEmpty } from 'lodash';
 import { Box } from '@mui/material';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
+const convertToCurrency = (value) => {
+  const options = { style: 'currency', currency: 'USD' };
+  return value.toLocaleString('en-US', options);
+}
+
+const tooltipFormatter = (value, name) => {
+  const customNames = {
+    amount: 'Total amount',
+    totalContributions: "Total contributions",
+  }
+
+  return [convertToCurrency(value), customNames[name]]
+}
+
 const EmptyState = () => <Box>Fill in some values to get started</Box>;
 
 const Visualization = ({ yearlyReturns }) => {
@@ -19,7 +33,7 @@ const Visualization = ({ yearlyReturns }) => {
       }}
     >
       <Box sx={{ fontWeight: "bold", fontSize: '20px', mb: '20px' }}>
-        {`You will have $${finalYear.amount} by ${finalYear.year}`}
+        {`You will have ${convertToCurrency(finalYear.amount)} by ${finalYear.year}`}
       </Box>
       <ResponsiveContainer width="90%" height="90%">
         <LineChart
@@ -36,7 +50,7 @@ const Visualization = ({ yearlyReturns }) => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="year" />
           <YAxis />
-          <Tooltip />
+          <Tooltip formatter={tooltipFormatter} />
           <Line type="monotone" dataKey="amount" stroke="#4841cc" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="totalContributions" stroke="#9c2624" activeDot={{ r: 8 }} />
         </LineChart>
@@ -44,6 +58,7 @@ const Visualization = ({ yearlyReturns }) => {
     </Box>
   )
 }
+
 const Chart = ({ yearlyReturns }) => {
   return (
     <Box sx={{
