@@ -2,6 +2,7 @@ import React from 'react';
 import { isEmpty } from 'lodash';
 import { Box } from '@mui/material';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import useIsMobile from '../hooks/useIsMobile';
 
 const convertToCurrency = (value) => {
   const options = { style: 'currency', currency: 'USD' };
@@ -60,17 +61,23 @@ const Visualization = ({ yearlyReturns }) => {
 }
 
 const Chart = ({ yearlyReturns }) => {
+  const isMobile = useIsMobile();
+
   return (
     <Box sx={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '70%', 
+      height: isEmpty(yearlyReturns) ? '0%' : '100%',
+      width: '100%', 
       backgroundColor: '#e4eaf5',
-      borderRadius: '0px 50px 50px 0px',
+      borderRadius: isMobile ? '0px 0px 50px 50px' : '0px 50px 50px 0px',
     }}>
       {isEmpty(yearlyReturns) ?
-        <EmptyState /> :
+        <Box>
+          {isMobile ? "" : "Fill in some values to get started"}
+        </Box>
+        :
         <Visualization yearlyReturns={yearlyReturns} />
       }
     </Box>
