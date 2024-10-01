@@ -1,1 +1,3 @@
-quick react app for personal use
+quick react app for personal use:
+
+https://recharts-investment-calculator.vercel.app/
