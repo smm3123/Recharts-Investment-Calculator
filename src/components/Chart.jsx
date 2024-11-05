@@ -1,7 +1,7 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
 import { Box } from '@mui/material';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
 import useIsMobile from '../hooks/useIsMobile';
 
 const convertToCurrency = (value) => {
@@ -22,7 +22,8 @@ const EmptyState = () => <Box>Fill in some values to get started</Box>;
 
 const Visualization = ({ yearlyReturns }) => {
   const finalYear = yearlyReturns[yearlyReturns.length - 1];
-  
+  const millionDollarYear = yearlyReturns.find(entry => entry.amount >= 1000000)?.year;
+
   return (
     <Box
       sx={{
@@ -54,6 +55,12 @@ const Visualization = ({ yearlyReturns }) => {
           <Tooltip formatter={tooltipFormatter} />
           <Line type="monotone" dataKey="amount" stroke="#4841cc" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="totalContributions" stroke="#9c2624" activeDot={{ r: 8 }} />
+          {millionDollarYear && (
+            <ReferenceLine
+              x={millionDollarYear}
+              stroke="red"
+            />
+          )}
         </LineChart>
       </ResponsiveContainer>
     </Box>
