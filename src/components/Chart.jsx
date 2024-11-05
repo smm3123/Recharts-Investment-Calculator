@@ -18,8 +18,6 @@ const tooltipFormatter = (value, name) => {
   return [convertToCurrency(value), customNames[name]]
 }
 
-const EmptyState = () => <Box>Fill in some values to get started</Box>;
-
 const Visualization = ({ yearlyReturns }) => {
   const finalYear = yearlyReturns[yearlyReturns.length - 1];
   const millionDollarYear = yearlyReturns.find(entry => entry.amount >= 1000000)?.year;
