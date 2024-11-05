@@ -49,14 +49,21 @@ const Inputs = ({ setYearlyReturns }) => {
   };
 
   return (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      padding: '30px',
-      backgroundColor: 'white',
-      borderRadius: isMobile ? '50px' : '50px 0px 0px 50px',
-      gap: '50px',
-    }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '30px',
+        backgroundColor: 'white',
+        borderRadius: isMobile ? '50px' : '50px 0px 0px 50px',
+        gap: '50px',
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          onSubmit();
+        }
+      }}
+    >
       <Box sx={{ fontWeight: "bold", fontSize: '25px' }}>Enter your information:</Box>
       <TextField
         label="Starting amount"
