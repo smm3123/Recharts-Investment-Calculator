@@ -59,7 +59,7 @@ const Visualization = ({ yearlyReturns }) => {
               stroke="red"
               strokeDasharray="3 3"
               label={{
-                value: `Crossed $1M in ${millionDollarYear}`,
+                value: `$1M in ${millionDollarYear - yearlyReturns[0].year} years (${millionDollarYear})`,
                 position: 'insideTopRight',
                 fill: 'red',
                 fontSize: 15,
