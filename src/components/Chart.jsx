@@ -57,6 +57,14 @@ const Visualization = ({ yearlyReturns }) => {
             <ReferenceLine
               x={millionDollarYear}
               stroke="red"
+              strokeDasharray="3 3"
+              label={{
+                value: `Crossed $1M in ${millionDollarYear}`,
+                position: 'insideTopRight',
+                fill: 'red',
+                fontSize: 15,
+                fontWeight: 'bold',
+              }}
             />
           )}
         </LineChart>
