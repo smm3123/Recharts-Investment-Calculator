@@ -2,7 +2,7 @@ import React from 'react';
 import { isEmpty } from 'lodash';
 import { Box } from '@mui/material';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
-import useIsMobile from '../hooks/useIsMobile';
+import useIsMobile from '../../hooks/useIsMobile';
 
 const convertToCurrency = (value) => {
   const options = { style: 'currency', currency: 'USD' };

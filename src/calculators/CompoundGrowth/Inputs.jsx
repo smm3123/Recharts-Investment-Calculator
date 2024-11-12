@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
-import useIsMobile from '../hooks/useIsMobile';
+import useIsMobile from '../../hooks/useIsMobile';
 
 const calculateReturnPerYear = (
   startingAmount,
