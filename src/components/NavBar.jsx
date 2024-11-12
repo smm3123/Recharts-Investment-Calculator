@@ -1,22 +1,42 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-// import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 
 const NavBar = () => {
   return (
-    <AppBar position="static" sx={{ mb: 4 }}>
+    <AppBar
+      position="static"
+      sx={{
+        mb: 4,
+        boxShadow: "none",
+        backgroundColor: "white",
+        borderBottom: "1px solid #e0e0e0",
+      }}
+    >
       <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between",
+          }}
         >
-          {/* <MenuIcon /> */}
-        </IconButton>
-        <Typography variant="h6" component="div">
-          Investment Calculator
-        </Typography>
+          <Typography variant="h6">
+            Investment Calculator
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+            }}
+          >
+            <Typography variant="body1">
+              Tools
+            </Typography>
+            <Typography variant="body1">
+              About
+            </Typography>
+          </Box>
+        </Box>
       </Toolbar>
     </AppBar>
   );
