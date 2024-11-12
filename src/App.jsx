@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 
 import NavBar from './components/NavBar';
-import { Home } from './components/Home';
+import Home from './components/Home';
+import Tools from './components/Tools';
 import { CompoundGrowth } from './calculators/CompoundGrowth';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/tools" element={<Tools />} />
           <Route path="/compound-growth" element={<CompoundGrowth />} />
         </Routes>
       </Box>
