@@ -1,5 +1,26 @@
 import React from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { useTheme } from "@mui/material";
+
+const NavButton = ({ link, children }) => {
+  const theme = useTheme();
+
+  return (
+    <Box
+      sx={{
+        cursor: "pointer",
+        "&:hover": {
+          borderBottom: `2px solid ${theme.palette.primary.main}`,
+        },
+      }}
+      onClick={() => {
+        window.location.href = link;
+      }}
+    >
+      {children}
+    </Box>
+  )
+}
 
 const NavBar = () => {
   return (
@@ -18,20 +39,25 @@ const NavBar = () => {
             display: "flex",
             width: "100%",
             justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <Typography variant="h6">
-            HorizonWallet
-          </Typography>
+          <NavButton link="/">
+            <Typography variant="h6">
+              HorizonWallet
+            </Typography>
+          </NavButton>
           <Box
             sx={{
               display: "flex",
-              gap: 2,
+              gap: 4,
             }}
           >
-            <Typography variant="body1">
-              Tools
-            </Typography>
+            <NavButton link="/compound-growth">
+              <Typography variant="body1">
+                Tools
+              </Typography>
+            </NavButton>
             <Typography variant="body1">
               About
             </Typography>
