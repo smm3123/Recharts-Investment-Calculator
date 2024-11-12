@@ -9,10 +9,19 @@ const NavButton = ({ link, children }) => {
     <Box
       sx={{
         cursor: "pointer",
-        paddingBottom: "2px", // Adjust padding to account for the border
-        "&:hover": {
-          borderBottom: `2px solid ${theme.palette.primary.main}`,
-          paddingBottom: 0, // Remove padding when the border appears
+        position: "relative",
+        "&::after": {
+          content: '""',
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: 0,
+          height: "2px",
+          backgroundColor: theme.palette.primary.main,
+          transition: "width 0.25s ease",
+        },
+        "&:hover::after": {
+          width: "100%",
         },
       }}
       onClick={() => {
@@ -21,8 +30,8 @@ const NavButton = ({ link, children }) => {
     >
       {children}
     </Box>
-  )
-}
+  );
+};
 
 const NavBar = () => {
   return (
