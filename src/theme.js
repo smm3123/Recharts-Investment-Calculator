@@ -20,6 +20,9 @@ const theme = createTheme({
       styleOverrides: {
         input: {
           color: 'black',
+          backgroundColor: 'white',
+          border: '1px solid #e0e0e0',
+          borderRadius: '5px 5px 0px 0px',
           '&::placeholder': {
             color: 'black',
             opacity: 1,
