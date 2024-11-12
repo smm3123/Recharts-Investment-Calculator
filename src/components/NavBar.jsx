@@ -21,7 +21,7 @@ const NavBar = () => {
           }}
         >
           <Typography variant="h6">
-            Investment Calculator
+            HorizonWallet
           </Typography>
           <Box
             sx={{
