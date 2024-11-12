@@ -9,8 +9,10 @@ const NavButton = ({ link, children }) => {
     <Box
       sx={{
         cursor: "pointer",
+        paddingBottom: "2px", // Adjust padding to account for the border
         "&:hover": {
           borderBottom: `2px solid ${theme.palette.primary.main}`,
+          paddingBottom: 0, // Remove padding when the border appears
         },
       }}
       onClick={() => {
