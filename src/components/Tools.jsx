@@ -16,11 +16,11 @@ const Tool = ({
         gap: 2,
         alignItems: "center",
         textAlign: "center",
-        backgroundColor: theme.palette.primary.light,
         borderRadius: "5px",
+        border: `2px solid ${theme.palette.primary.main}`,
         p: 4,
         "&:hover": {
-          backgroundColor: theme.palette.primary.main,
+          backgroundColor: theme.palette.primary.light,
         },
         cursor: "pointer",
       }}
@@ -44,12 +44,19 @@ const InvestmentTools = () => {
       <Typography variant="h4" gutterBottom>
         Investment Tools
       </Typography>
-      <Tool
-        title="Compound Growth Calculator"
-        description="Calculate the future value of an investment with compound interest."
-        link="/tools/compound-growth"
-        image="https://via.placeholder.com/200"
-      />
+      <Box
+        sx={{
+          display: "flex",
+          gap: 4,
+        }}
+      >
+        <Tool
+          title="Compound Growth Calculator"
+          description="Calculate the future value of an investment with compound interest."
+          link="/tools/compound-growth"
+          image="https://via.placeholder.com/200"
+        />
+      </Box>
     </Box>
   );
 }
