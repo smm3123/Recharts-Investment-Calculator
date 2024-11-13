@@ -54,7 +54,28 @@ const InvestmentTools = () => {
           title="Compound Growth Calculator"
           description="Calculate the future value of an investment with compound interest."
           link="/tools/compound-growth"
-          image="https://via.placeholder.com/200"
+        />
+      </Box>
+    </Box>
+  );
+}
+
+const MortgageTools = () => {
+  return (
+    <Box>
+      <Typography variant="h4" gutterBottom>
+        Mortgage Tools
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 4,
+        }}
+      >
+        <Tool
+          title="Mortgage Calculator"
+          description="Calculate your monthly mortgage payments."
+          link="/tools/mortgage"
         />
       </Box>
     </Box>
@@ -63,8 +84,16 @@ const InvestmentTools = () => {
 
 const Tools = () => {
   return (
-    <Box sx={{ px: 6}}>
+    <Box
+      id="tools"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 10,
+        px: 6
+      }}>
       <InvestmentTools />
+      <MortgageTools />
     </Box>
   );
 }
