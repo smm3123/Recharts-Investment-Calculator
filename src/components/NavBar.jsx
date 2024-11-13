@@ -2,6 +2,12 @@ import React from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import { useTheme } from "@mui/material";
 
+const Highlight = ({ children }) => (
+  <Box component="span" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
+    {children}
+  </Box>
+);
+
 const NavButton = ({ link, children }) => {
   const theme = useTheme();
 
@@ -55,7 +61,7 @@ const NavBar = () => {
         >
           <NavButton link="/">
             <Typography variant="h6">
-              HorizonWallet
+              Horizon<Highlight>Wallet</Highlight>
             </Typography>
           </NavButton>
           <Box
@@ -64,7 +70,7 @@ const NavBar = () => {
               gap: 4,
             }}
           >
-            <NavButton link="/compound-growth">
+            <NavButton link="/tools">
               <Typography variant="body1">
                 Tools
               </Typography>

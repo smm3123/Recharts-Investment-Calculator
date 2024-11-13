@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tools" element={<Tools />} />
-          <Route path="/compound-growth" element={<CompoundGrowth />} />
+          <Route path="/tools/compound-growth" element={<CompoundGrowth />} />
         </Routes>
       </Box>
     </Router>
