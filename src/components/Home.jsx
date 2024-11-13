@@ -1,11 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
-
-const Highlight = ({ children }) => (
-  <Box component="span" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
-    {children}
-  </Box>
-);
+import Highlight from './Highlight';
 
 const Home = () => {
   return (

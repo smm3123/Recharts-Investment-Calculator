@@ -3,11 +3,7 @@ import { isEmpty } from 'lodash';
 import { useTheme, Box } from '@mui/material';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
 import useIsMobile from '../../hooks/useIsMobile';
-
-const convertToCurrency = (value) => {
-  const options = { style: 'currency', currency: 'USD' };
-  return value.toLocaleString('en-US', options);
-}
+import { convertToCurrency } from './utils';
 
 const tooltipFormatter = (value, name) => {
   const customNames = {
@@ -33,9 +29,6 @@ const Visualization = ({ yearlyReturns }) => {
         height: '100%',
       }}
     >
-      <Box sx={{ fontWeight: "bold", fontSize: '20px', mb: '20px' }}>
-        {`You will have ${convertToCurrency(finalYear.amount)} by ${finalYear.year}`}
-      </Box>
       <ResponsiveContainer width="90%" height="90%">
         <AreaChart
           width={800}
@@ -69,11 +62,10 @@ const Visualization = ({ yearlyReturns }) => {
               stroke="red"
               strokeDasharray="3 3"
               label={{
-                value: `$1M in ${millionDollarYear - yearlyReturns[0].year} years (${millionDollarYear})`,
+                value: `$1M`,
                 position: 'insideTopRight',
                 fill: 'red',
                 fontSize: 15,
-                fontWeight: 'bold',
               }}
             />
           )}

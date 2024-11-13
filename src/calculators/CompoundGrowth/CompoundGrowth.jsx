@@ -3,10 +3,12 @@ import { Box } from '@mui/material';
 
 import Inputs from './Inputs';
 import Chart from './Chart';
+import Insights from './Insights';
 import useIsMobile from "../../hooks/useIsMobile";
+import { isEmpty } from 'lodash';
 
 const CompoundGrowth = () => {
-  const [yearlyReturns, setYearlyReturns] = useState({});
+  const [yearlyReturns, setYearlyReturns] = useState([]);
   const isMobile = useIsMobile();
 
   return (
@@ -39,6 +41,8 @@ const CompoundGrowth = () => {
             }}
           >
             <Inputs setYearlyReturns={setYearlyReturns} />
+            {console.log(yearlyReturns)}
+            {yearlyReturns.length > 1 && <Insights yearlyReturns={yearlyReturns} />}
           </Box>
           <Box
             sx={{

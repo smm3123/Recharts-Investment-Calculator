@@ -1,12 +1,7 @@
 import React from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import { useTheme } from "@mui/material";
-
-const Highlight = ({ children }) => (
-  <Box component="span" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
-    {children}
-  </Box>
-);
+import Highlight from './Highlight';
 
 const NavButton = ({ link, children }) => {
   const theme = useTheme();
