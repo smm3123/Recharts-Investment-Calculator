@@ -1,7 +1,7 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
-import { Box } from '@mui/material';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
+import { useTheme, Box } from '@mui/material';
+import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
 import useIsMobile from '../../hooks/useIsMobile';
 
 const convertToCurrency = (value) => {
@@ -19,6 +19,7 @@ const tooltipFormatter = (value, name) => {
 }
 
 const Visualization = ({ yearlyReturns }) => {
+  const theme = useTheme();
   const finalYear = yearlyReturns[yearlyReturns.length - 1];
   const millionDollarYear = yearlyReturns.find(entry => entry.amount >= 1000000)?.year;
 
@@ -36,23 +37,32 @@ const Visualization = ({ yearlyReturns }) => {
         {`You will have ${convertToCurrency(finalYear.amount)} by ${finalYear.year}`}
       </Box>
       <ResponsiveContainer width="90%" height="90%">
-        <LineChart
+        <AreaChart
           width={800}
           height={600}
           data={yearlyReturns}
           margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="year" />
           <YAxis />
           <Tooltip formatter={tooltipFormatter} />
-          <Line type="monotone" dataKey="amount" stroke="#4841cc" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="totalContributions" stroke="#9c2624" activeDot={{ r: 8 }} />
+          <Area
+            type="monotone"
+            dataKey="amount"
+            stroke={theme.palette.primary.main}
+            fill={theme.palette.primary.main}
+          />
+          <Area
+            type="monotone"
+            dataKey="totalContributions"
+            activeDot={{ r: 8 }}
+          />
           {millionDollarYear && (
             <ReferenceLine
               x={millionDollarYear}
@@ -67,7 +77,7 @@ const Visualization = ({ yearlyReturns }) => {
               }}
             />
           )}
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
     </Box>
   )
@@ -83,7 +93,6 @@ const Chart = ({ yearlyReturns }) => {
       alignItems: 'center',
       height: '100%',
       width: '100%', 
-      backgroundColor: '#e4eaf5',
       borderRadius: isMobile ? '0px 0px 50px 50px' : '0px 50px 50px 0px',
     }}>
       {isEmpty(yearlyReturns) ?

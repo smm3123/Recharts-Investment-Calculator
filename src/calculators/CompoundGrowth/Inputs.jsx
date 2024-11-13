@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, TextField } from '@mui/material';
 import useIsMobile from '../../hooks/useIsMobile';
 
 const calculateReturnPerYear = (
@@ -37,7 +37,7 @@ const Inputs = ({ setYearlyReturns }) => {
 
   const isMobile = useIsMobile();
 
-  const onSubmit = () => {
+  useEffect(() => {
     setYearlyReturns(
       calculateReturnPerYear(
         parseInt(startingAmount),
@@ -46,7 +46,7 @@ const Inputs = ({ setYearlyReturns }) => {
         parseInt(rateOfReturn),
       )
     );
-  };
+  }, [startingAmount, monthlyContribution, years, rateOfReturn, setYearlyReturns]);
 
   return (
     <Box
@@ -57,11 +57,6 @@ const Inputs = ({ setYearlyReturns }) => {
         backgroundColor: 'white',
         borderRadius: isMobile ? '50px' : '50px 0px 0px 50px',
         gap: '50px',
-      }}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-          onSubmit();
-        }
       }}
     >
       <Box sx={{ fontWeight: "bold", fontSize: '25px' }}>Enter your information:</Box>
@@ -85,7 +80,6 @@ const Inputs = ({ setYearlyReturns }) => {
         variant="filled"
         onChange={(e) => setRateOfReturn(e.target.value)}
       />
-      <Button variant="contained" onClick={onSubmit}>Calculate</Button>
     </Box>
   );
 }

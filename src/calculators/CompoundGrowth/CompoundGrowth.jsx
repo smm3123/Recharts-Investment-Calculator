@@ -29,7 +29,7 @@ const CompoundGrowth = () => {
             height: '100%',
             width: '80%',
             borderRadius: '50px',
-            border: '3px solid',
+            border: '2px solid #e0e0e0',
           }}
         >
           <Box
