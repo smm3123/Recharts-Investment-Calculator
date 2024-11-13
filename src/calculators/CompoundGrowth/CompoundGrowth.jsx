@@ -41,7 +41,6 @@ const CompoundGrowth = () => {
             }}
           >
             <Inputs setYearlyReturns={setYearlyReturns} />
-            {console.log(yearlyReturns)}
             {yearlyReturns.length > 1 && <Insights yearlyReturns={yearlyReturns} />}
           </Box>
           <Box
