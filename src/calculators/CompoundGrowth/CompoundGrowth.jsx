@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import Inputs from './Inputs';
 import Chart from './Chart';
 import Insights from './Insights';
 import useIsMobile from "../../hooks/useIsMobile";
-import { isEmpty } from 'lodash';
 
 const CompoundGrowth = () => {
   const [yearlyReturns, setYearlyReturns] = useState([]);
@@ -13,6 +12,9 @@ const CompoundGrowth = () => {
 
   return (
     <Box sx={{ height: '100%' }}>
+      <Typography variant="h4" gutterBottom sx={{ textAlign: 'center', fontWeight: 'bold' }}>
+        Compound Growth Calculator
+      </Typography>
       <Box
         sx={{
           display: 'flex',
