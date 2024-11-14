@@ -9,7 +9,7 @@ const calculateMonthlyMortgagePayment = (
   annualInterestRate,
 ) => {
   /*
-  The formula is
+  The formula
 
   M = P( ( i(1+i)^n ) / ( ((1 + i)^n) - 1) )
 
@@ -37,7 +37,8 @@ const calculateMonthlyMortgagePayment = (
 const Inputs = ({ setMonthlyMortgagePayment }) => {
   const [homePrice, setHomePrice] = useState("0");
   const [downPayment, setDownPayment] = useState("0");
-  const [loanTerm, setLoanTerm] = useState("0");
+  const [downPaymentPercentage, setDownPaymentPercentage] = useState("0");
+  const [loanTerm, setLoanTerm] = useState("30");
   const [interestRate, setInterestRate] = useState("0");
   const [propertyTax, setPropertyTax] = useState("0");
   const [homeInsurance, setHomeInsurance] = useState("0");
@@ -45,13 +46,47 @@ const Inputs = ({ setMonthlyMortgagePayment }) => {
 
   const isMobile = useIsMobile();
 
-  useEffect(() => {
-    // Helper function to safely parse numbers, defaulting to 0
-    const safeParse = (value, isFloat = false) => {
-      const parsed = isFloat ? parseFloat(value) : parseInt(value, 10);
-      return isNaN(parsed) ? 0 : parsed;
-    };
+  // Helper function to safely parse numbers, defaulting to 0
+  const safeParse = (value, isFloat = false) => {
+    const parsed = isFloat ? parseFloat(value) : parseInt(value, 10);
+    return isNaN(parsed) ? 0 : parsed;
+  };
 
+  // Handler for Home Price change
+  const handleHomePriceChange = (e) => {
+    const value = e.target.value;
+    setHomePrice(value);
+
+    // Recalculate down payment based on new home price and the current down payment percentage
+    const parsedHomePrice = safeParse(value);
+    const parsedPercentage = safeParse(downPaymentPercentage, true);
+    const newDownPayment = parsedHomePrice > 0 ? (parsedPercentage / 100) * parsedHomePrice : 0;
+    setDownPayment(newDownPayment.toFixed(2).toString());
+  };
+
+  // Handler for Down Payment change
+  const handleDownPaymentChange = (e) => {
+    const value = e.target.value;
+    setDownPayment(value);
+
+    const parsedHomePrice = safeParse(homePrice);
+    const parsedDownPayment = safeParse(value);
+    const percentage = parsedHomePrice > 0 ? (parsedDownPayment / parsedHomePrice) * 100 : 0;
+    setDownPaymentPercentage(percentage.toFixed(2).toString());
+  };
+
+  // Handler for Down Payment Percentage change
+  const handleDownPaymentPercentageChange = (e) => {
+    const value = e.target.value;
+    setDownPaymentPercentage(value);
+
+    const parsedHomePrice = safeParse(homePrice);
+    const parsedPercentage = safeParse(value, true);
+    const newDownPayment = parsedHomePrice > 0 ? (parsedPercentage / 100) * parsedHomePrice : 0;
+    setDownPayment(newDownPayment.toFixed(2).toString());
+  };
+
+  useEffect(() => {
     const parsedHomePrice = safeParse(homePrice);
     const parsedDownPayment = safeParse(downPayment);
     const parsedLoanTerm = safeParse(loanTerm);
@@ -96,18 +131,31 @@ const Inputs = ({ setMonthlyMortgagePayment }) => {
       }}
     >
       <Box sx={{ fontWeight: "bold", fontSize: '25px' }}>Enter your information:</Box>
+      
       <TextField
         label="Home Price ($)"
         variant="filled"
         value={homePrice}
-        onChange={(e) => setHomePrice(e.target.value)}
+        onChange={handleHomePriceChange}
       />
-      <TextField
-        label="Down Payment ($)"
-        variant="filled"
-        value={downPayment}
-        onChange={(e) => setDownPayment(e.target.value)}
-      />
+
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <TextField
+          label="Down Payment ($)"
+          variant="filled"
+          value={downPayment}
+          onChange={handleDownPaymentChange}
+          fullWidth
+        />
+        <TextField
+          label="%"
+          variant="filled"
+          value={downPaymentPercentage}
+          onChange={handleDownPaymentPercentageChange}
+          sx={{ width: '150px' }}
+        />
+      </Box>
+
       <TextField
         label="Loan Term (years)"
         variant="filled"
@@ -117,25 +165,21 @@ const Inputs = ({ setMonthlyMortgagePayment }) => {
       <TextField
         label="Interest Rate (%)"
         variant="filled"
-        value={interestRate}
         onChange={(e) => setInterestRate(e.target.value)}
       />
       <TextField
         label="Property Tax / year ($)"
         variant="filled"
-        value={propertyTax}
         onChange={(e) => setPropertyTax(e.target.value)}
       />
       <TextField
         label="Home Insurance / year ($)"
         variant="filled"
-        value={homeInsurance}
         onChange={(e) => setHomeInsurance(e.target.value)}
       />
       <TextField
         label="HOA ($)"
         variant="filled"
-        value={hoa}
         onChange={(e) => setHoa(e.target.value)}
       />
     </Box>

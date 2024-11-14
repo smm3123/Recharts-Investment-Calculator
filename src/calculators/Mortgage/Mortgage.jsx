@@ -12,7 +12,7 @@ const Mortgage = () => {
     <ToolContainer title="Mortgage Calculator">
       <Box
         sx={{
-          width: isMobile ? '100%' : '40%',
+          width: '100%',
           height: isMobile ? '50%' : '100%',
         }}
       >
