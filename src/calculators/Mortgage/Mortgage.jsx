@@ -5,6 +5,8 @@ import ToolContainer from "../ToolContainer";
 
 import useIsMobile from "../../hooks/useIsMobile";
 import Chart from "./Chart";
+import { safeParse } from "../utils";
+import Insights from "./Insights";
 
 const Mortgage = () => {
   const [monthlyMortgagePayment, setMonthlyMortgagePayment] = useState(0);
@@ -33,9 +35,8 @@ const Mortgage = () => {
       </Box>
       <Box
         sx={{
-          height: isMobile ? '500px' : '80vh',
+          height: isMobile ? '500px' : '50vh',
           width: '100%',
-          display: 'flex',
         }}
       >
         <Chart
@@ -43,6 +44,15 @@ const Mortgage = () => {
           propertyTax={propertyTax}
           homeInsurance={homeInsurance}
           hoa={hoa}
+        />
+      </Box>
+      
+      <Box>
+        <Insights
+          monthlyMortgagePayment={safeParse(monthlyMortgagePayment, true)}
+          propertyTax={safeParse(propertyTax, true)}
+          homeInsurance={safeParse(homeInsurance, true)}
+          hoa={safeParse(hoa, true)}
         />
       </Box>
     </ToolContainer>

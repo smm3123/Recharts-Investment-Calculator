@@ -91,9 +91,6 @@ const Inputs = ({
     const parsedDownPayment = safeParse(downPayment);
     const parsedLoanTerm = safeParse(loanTerm);
     const parsedInterestRate = safeParse(interestRate, true);
-    const parsedPropertyTax = safeParse(propertyTax);
-    const parsedHomeInsurance = safeParse(homeInsurance);
-    const parsedHoa = safeParse(hoa);
 
     const mortgage = calculateMonthlyMortgagePayment(
       parsedHomePrice,
@@ -102,12 +99,7 @@ const Inputs = ({
       parsedInterestRate,
     );
 
-    const totalPayment = mortgage 
-      + (parsedPropertyTax / 12) 
-      + (parsedHomeInsurance / 12) 
-      + parsedHoa;
-
-    setMonthlyMortgagePayment(totalPayment.toFixed(2));
+    setMonthlyMortgagePayment(mortgage.toFixed(2));
   }, [
     homePrice,
     downPayment,
@@ -168,17 +160,17 @@ const Inputs = ({
         onChange={(e) => setInterestRate(e.target.value)}
       />
       <TextField
-        label="Property Tax / year ($)"
+        label="Property Tax / month ($)"
         variant="filled"
         onChange={(e) => setPropertyTax(e.target.value)}
       />
       <TextField
-        label="Home Insurance / year ($)"
+        label="Home Insurance / month ($)"
         variant="filled"
         onChange={(e) => setHomeInsurance(e.target.value)}
       />
       <TextField
-        label="HOA ($)"
+        label="HOA / month ($)"
         variant="filled"
         onChange={(e) => setHoa(e.target.value)}
       />

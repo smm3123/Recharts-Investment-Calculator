@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-const Highlight = ({ children }) => (
-  <Box component="span" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
+const Highlight = ({ color = "primary.main", children }) => (
+  <Box component="span" sx={{ color, fontWeight: 'bold' }}>
     {children}
   </Box>
 );

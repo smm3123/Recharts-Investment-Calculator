@@ -1,10 +1,9 @@
 import React from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { convertToCurrency } from "../utils";
 import Highlight from '../../components/Highlight';
 
 const Insights = ({ yearlyReturns }) => {
-  const theme = useTheme();
   const finalYear = yearlyReturns[yearlyReturns.length - 1];
   const millionDollarYear = yearlyReturns.find(entry => entry.amount >= 1000000)?.year;
 

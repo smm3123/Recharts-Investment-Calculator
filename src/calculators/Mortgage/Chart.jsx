@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useTheme, Box } from '@mui/material';
 import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
 import useIsMobile from '../../hooks/useIsMobile';
-import { convertToCurrency, safeParse } from '../utils';
+import { convertToCurrency, getColors, safeParse } from '../utils';
+import Insights from './Insights';
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -57,13 +58,14 @@ const Visualization = ({
   hoa,
 }) => {
   const theme = useTheme();
+  const colors = getColors(theme);
   const [activeIndex, setActiveIndex] = useState(null);
 
   const data = [
-    { name: 'P & I', value: monthlyMortgagePayment, fill: theme.palette.primary.main },
-    { name: 'Property Tax', value: propertyTax, fill: 'turquoise' },
-    { name: 'Home Insurance', value: homeInsurance, fill: '#ffc658' },
-    { name: 'HOA', value: hoa, fill: '#ff8042' },
+    { name: 'P & I', value: monthlyMortgagePayment, fill: colors[0] },
+    { name: 'Property Tax', value: propertyTax, fill: colors[1] },
+    { name: 'Home Insurance', value: homeInsurance, fill: colors[2] },
+    { name: 'HOA', value: hoa, fill: colors[3] },
   ];
 
   const onPieEnter = (_, index) => {
@@ -73,15 +75,12 @@ const Visualization = ({
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
         width: '100%',
         height: '100%',
         mt: 8,
       }}
     >
-      <ResponsiveContainer width="90%" height="90%">
+      <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             data={data}
@@ -113,8 +112,8 @@ const Chart = ({
 
   return (
     <Box sx={{
+      height: "100%",
       width: '100%', 
-      borderRadius: isMobile ? '0px 0px 50px 50px' : '0px 50px 50px 0px',
     }}>
       <Visualization
         monthlyMortgagePayment={safeParse(monthlyMortgagePayment, true)}
