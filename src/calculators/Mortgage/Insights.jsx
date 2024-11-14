@@ -26,10 +26,10 @@ const Insights = ({
       }}
     >
       <Typography>
-        Your total monthly payment is <Highlight>{convertToCurrency(totalPayment)}</Highlight>.
+        Your total monthly payment is {convertToCurrency(totalPayment)}
       </Typography>
       <Typography>
-        Mortgage: <Highlight color={colors[0]}>{convertToCurrency(monthlyMortgagePayment)}</Highlight> ({((safeParse(monthlyMortgagePayment) / totalPayment) * 100).toFixed(2)}%)
+        Principal & Interest: <Highlight color={colors[0]}>{convertToCurrency(monthlyMortgagePayment)}</Highlight> ({((safeParse(monthlyMortgagePayment) / totalPayment) * 100).toFixed(2)}%)
       </Typography>
       <Typography>
         Property Tax: <Highlight color={colors[1]}>{convertToCurrency(propertyTax)}</Highlight> ({((safeParse(propertyTax) / totalPayment) * 100).toFixed(2)}%)
