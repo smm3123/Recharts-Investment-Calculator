@@ -16,7 +16,6 @@ const tooltipFormatter = (value, name) => {
 
 const Visualization = ({ yearlyReturns }) => {
   const theme = useTheme();
-  const finalYear = yearlyReturns[yearlyReturns.length - 1];
   const millionDollarYear = yearlyReturns.find(entry => entry.amount >= 1000000)?.year;
 
   return (

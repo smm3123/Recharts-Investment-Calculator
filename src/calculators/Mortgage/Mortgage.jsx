@@ -7,6 +7,10 @@ import useIsMobile from "../../hooks/useIsMobile";
 
 const Mortgage = () => {
   const [monthlyMortgagePayment, setMonthlyMortgagePayment] = useState(0);
+  const [propertyTax, setPropertyTax] = useState("0");
+  const [homeInsurance, setHomeInsurance] = useState("0");
+  const [hoa, setHoa] = useState("0");
+
   const isMobile = useIsMobile();
   return (
     <ToolContainer title="Mortgage Calculator">
@@ -16,7 +20,15 @@ const Mortgage = () => {
           height: isMobile ? '50%' : '100%',
         }}
       >
-        <Inputs setMonthlyMortgagePayment={setMonthlyMortgagePayment} />
+        <Inputs
+          setMonthlyMortgagePayment={setMonthlyMortgagePayment}
+          setPropertyTax={setPropertyTax}
+          setHomeInsurance={setHomeInsurance}
+          setHoa={setHoa}
+          propertyTax={propertyTax}
+          homeInsurance={homeInsurance}
+          hoa={hoa}
+        />
       </Box>
       <Box
         sx={{

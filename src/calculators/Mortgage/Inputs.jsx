@@ -34,15 +34,20 @@ const calculateMonthlyMortgagePayment = (
   return monthlyPayment;
 };
 
-const Inputs = ({ setMonthlyMortgagePayment }) => {
+const Inputs = ({
+  setMonthlyMortgagePayment,
+  setPropertyTax,
+  setHomeInsurance,
+  setHoa,
+  propertyTax,
+  homeInsurance,
+  hoa,
+}) => {
   const [homePrice, setHomePrice] = useState("0");
   const [downPayment, setDownPayment] = useState("0");
   const [downPaymentPercentage, setDownPaymentPercentage] = useState("0");
   const [loanTerm, setLoanTerm] = useState("30");
   const [interestRate, setInterestRate] = useState("0");
-  const [propertyTax, setPropertyTax] = useState("0");
-  const [homeInsurance, setHomeInsurance] = useState("0");
-  const [hoa, setHoa] = useState("0");
 
   const isMobile = useIsMobile();
 
