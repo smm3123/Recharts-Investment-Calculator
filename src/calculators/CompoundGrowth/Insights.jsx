@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
-import { convertToCurrency } from './utils';
+import { convertToCurrency } from "../utils";
 import Highlight from '../../components/Highlight';
 
 const Insights = ({ yearlyReturns }) => {

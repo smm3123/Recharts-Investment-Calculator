@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, TextField } from '@mui/material';
 import useIsMobile from '../../hooks/useIsMobile';
+import { safeParse } from '../utils';
 
 const calculateMonthlyMortgagePayment = (
   homePrice,
@@ -50,12 +51,6 @@ const Inputs = ({
   const [interestRate, setInterestRate] = useState("0");
 
   const isMobile = useIsMobile();
-
-  // Helper function to safely parse numbers, defaulting to 0
-  const safeParse = (value, isFloat = false) => {
-    const parsed = isFloat ? parseFloat(value) : parseInt(value, 10);
-    return isNaN(parsed) ? 0 : parsed;
-  };
 
   // Handler for Home Price change
   const handleHomePriceChange = (e) => {

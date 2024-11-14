@@ -3,7 +3,7 @@ import { isEmpty } from 'lodash';
 import { useTheme, Box } from '@mui/material';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
 import useIsMobile from '../../hooks/useIsMobile';
-import { convertToCurrency } from './utils';
+import { convertToCurrency } from '../utils';
 
 const tooltipFormatter = (value, name) => {
   const customNames = {

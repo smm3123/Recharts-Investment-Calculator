@@ -4,6 +4,7 @@ import Inputs from "./Inputs";
 import ToolContainer from "../ToolContainer";
 
 import useIsMobile from "../../hooks/useIsMobile";
+import Chart from "./Chart";
 
 const Mortgage = () => {
   const [monthlyMortgagePayment, setMonthlyMortgagePayment] = useState(0);
@@ -16,7 +17,7 @@ const Mortgage = () => {
     <ToolContainer title="Mortgage Calculator">
       <Box
         sx={{
-          width: '100%',
+          width: isMobile ? "100%" : '60%',
           height: isMobile ? '50%' : '100%',
         }}
       >
@@ -37,7 +38,12 @@ const Mortgage = () => {
           display: 'flex',
         }}
       >
-        {monthlyMortgagePayment}
+        <Chart
+          monthlyMortgagePayment={monthlyMortgagePayment}
+          propertyTax={propertyTax}
+          homeInsurance={homeInsurance}
+          hoa={hoa}
+        />
       </Box>
     </ToolContainer>
   );
