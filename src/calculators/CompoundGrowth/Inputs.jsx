@@ -33,7 +33,7 @@ const Inputs = ({ setYearlyReturns }) => {
   const [startingAmount, setStartingAmount] = useState("0");
   const [monthlyContribution, setMonthlyContribution] = useState("0");
   const [years, setYears] = useState("0");
-  const [rateOfReturn, setRateOfReturn] = useState("7");
+  const [rateOfReturn, setRateOfReturn] = useState("0");
 
   const isMobile = useIsMobile();
 
@@ -61,12 +61,12 @@ const Inputs = ({ setYearlyReturns }) => {
     >
       <Box sx={{ fontWeight: "bold", fontSize: '25px' }}>Enter your information:</Box>
       <TextField
-        label="Starting amount"
+        label="Starting amount ($)"
         variant="filled"
         onChange={(e) => setStartingAmount(e.target.value)}
       />
       <TextField
-        label="Monthly contribution"
+        label="Monthly contribution ($)"
         variant="filled"
         onChange={(e) => setMonthlyContribution(e.target.value)}
       />
@@ -76,7 +76,7 @@ const Inputs = ({ setYearlyReturns }) => {
         onChange={(e) => setYears(e.target.value)}
       />
       <TextField
-        label="Expected rate of return"
+        label="Rate of return (%)"
         variant="filled"
         onChange={(e) => setRateOfReturn(e.target.value)}
       />
