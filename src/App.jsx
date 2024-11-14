@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Tools from './components/Tools';
 import { CompoundGrowth } from './calculators/CompoundGrowth';
+import { Mortgage } from './calculators/Mortgage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/tools" element={<Tools />} />
           <Route path="/tools/compound-growth" element={<CompoundGrowth />} />
+          <Route path="/tools/mortgage" element={<Mortgage />} />
         </Routes>
       </Box>
     </Router>
