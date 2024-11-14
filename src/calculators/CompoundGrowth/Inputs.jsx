@@ -79,6 +79,7 @@ const Inputs = ({ setYearlyReturns }) => {
         label="Rate of return (%)"
         variant="filled"
         onChange={(e) => setRateOfReturn(e.target.value)}
+        helperText="The S&P 500 has historically returned around 10% since its inception."
       />
     </Box>
   );
